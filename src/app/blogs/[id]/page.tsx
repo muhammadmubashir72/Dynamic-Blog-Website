@@ -3,16 +3,26 @@ import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
+// Define the type for the image object (assuming Sanity image structure)
+type SanityImage = {
+  _type: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+};
+
+// Define the Blog type with more specific types
 type Blog = {
   id: string;
-  image: any;
+  image: SanityImage;  // Specific type for image
   category: string;
   heading: string;
   paragrapgh: string;
   icon: string;
   author: string;
   date: string;
-  content: any;
+  content: string;  // Assuming content is a string (text)
   readingTime: string;
 };
 
