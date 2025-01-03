@@ -1,28 +1,18 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
-// Define the type for the image object (assuming Sanity image structure)
-type SanityImage = {
-  _type: string;
-  asset: {
-    _ref: string;
-    _type: string;
-  };
-};
-
-// Define the Blog type with more specific types
 type Blog = {
   id: string;
-  image: SanityImage;  // Specific type for image
+  image: any;
   category: string;
   heading: string;
   paragrapgh: string;
   icon: string;
   author: string;
   date: string;
-  content: string;  // Assuming content is a string (text)
+  content: any;
   readingTime: string;
 };
 
@@ -53,7 +43,7 @@ async function FetchBlogById(id: string): Promise<Blog | null> {
   }
 }
 
-export default function BlogDetails({ params }: PageProps ) {
+export default function BlogDetails({ params }: PageProps) {
   const [comments, setComments] = useState<{ name: string; comment: string }[]>([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
