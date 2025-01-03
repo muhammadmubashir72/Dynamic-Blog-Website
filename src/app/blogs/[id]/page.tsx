@@ -5,7 +5,7 @@ import { urlFor } from "@/sanity/lib/image";
 
 type Blog = {
   id: string;
-  image: any;
+  image: string;
   category: string;
   heading: string;
   paragrapgh: string;
