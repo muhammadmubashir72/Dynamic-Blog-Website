@@ -1,8 +1,11 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
+// Define the Blog type
 type Blog = {
   id: string;
   image: string;
@@ -12,15 +15,10 @@ type Blog = {
   icon: string;
   author: string;
   date: string;
-  content: string;
   readingTime: string;
 };
 
-// Define the PageProps type for dynamic routes
-type PageProps = {
-  params: { id: string };
-};
-
+// Function to fetch the blog by ID
 async function FetchBlogById(id: string): Promise<Blog | null> {
   try {
     const query = `*[_type == "blog" && id == $id][0]{
@@ -35,7 +33,7 @@ async function FetchBlogById(id: string): Promise<Blog | null> {
       content
     }`;
 
-    const data = await client.fetch(query, { id });
+    const data: Blog | null = await client.fetch(query, { id });
     return data;
   } catch (error) {
     console.error("Error fetching blog by ID:", error);
@@ -43,7 +41,8 @@ async function FetchBlogById(id: string): Promise<Blog | null> {
   }
 }
 
-export default function BlogDetails({ params }: PageProps ) {
+// BlogDetails component to display the blog content
+export default function BlogDetails() {
   const [comments, setComments] = useState<{ name: string; comment: string }[]>([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -51,22 +50,25 @@ export default function BlogDetails({ params }: PageProps ) {
   const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState<string | null>(null); // Add error state
 
-  // Decode the id (to handle special characters in the URL)
-  const decodedId = decodeURIComponent(params.id);
+  const router = useRouter();
+  const { id } = router.query; // Get the dynamic ID from the URL
 
+  // Fetch blog data when the component mounts or when id changes
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true); // Start loading
-      const fetchedBlog = await FetchBlogById(decodedId);
-      if (fetchedBlog) {
-        setBlog(fetchedBlog);
-      } else {
-        setError("Blog not found");
-      }
-      setLoading(false); // Stop loading
-    };
-    fetchData();
-  }, [decodedId]); // Fetch data when the decodedId changes
+    if (id) {
+      const fetchData = async () => {
+        setLoading(true); // Start loading
+        const fetchedBlog = await FetchBlogById(id as string); // Ensure id is a string
+        if (fetchedBlog) {
+          setBlog(fetchedBlog);
+        } else {
+          setError("Blog not found");
+        }
+        setLoading(false); // Stop loading
+      };
+      fetchData();
+    }
+  }, [id]); // Fetch data when the id changes
 
   // Handle comment submission
   const handleCommentSubmit = (e: React.FormEvent) => {
@@ -97,8 +99,8 @@ export default function BlogDetails({ params }: PageProps ) {
     <div className="p-8">
       {/* Blog Image */}
       <div className="flex justify-center">
-        <img
-          src={urlFor(blog.image).url()}
+        <Image
+          src={blog.image}
           alt={blog.heading}
           className="w-[600px] h-[400px] max-w-3xl object-cover rounded-lg shadow-lg border-4 border-gray-200"
         />
@@ -111,7 +113,7 @@ export default function BlogDetails({ params }: PageProps ) {
       <p className="text-gray-800 mt-6 leading-relaxed">{blog.paragrapgh}</p>
       {/* Author and Date */}
       <div className="flex items-center mt-8 space-x-4">
-        <img
+        <Image
           src={urlFor(blog.icon).url()}
           alt={blog.author}
           className="w-10 h-10 rounded-full shadow-md"

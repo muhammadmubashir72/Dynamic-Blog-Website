@@ -1,4 +1,6 @@
+import { urlFor } from "@/sanity/lib/image";
 import { Montserrat, Roboto } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["700"] });
@@ -21,8 +23,8 @@ interface Cards {
 const BlogComponent = (card: Cards) => {
   return (
     <div className="w-[392px] h-[520px] space-y-6 my-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
-      <img
-        src={card.imagePath} // Replace with your image path
+      <Image
+        src={urlFor(card.imagePath).url()} // Replace with your image path
         alt="Category"
         width={360}
         height={240}
@@ -47,8 +49,8 @@ const BlogComponent = (card: Cards) => {
           {card.paragraph}
         </p>
         <div className="flex space-x-4 items-center">
-          <img
-            src={card.icon} // Replace with your image path
+          <Image
+            src={urlFor(card.icon).url()} // Replace with your image path
             alt="icon"
             width={40}
             height={40}

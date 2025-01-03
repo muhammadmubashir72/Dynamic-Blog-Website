@@ -1,4 +1,5 @@
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 // Define types for the value of image and link
 type ImageValue = {
@@ -18,7 +19,7 @@ export const customComponents = {
   types: {
     image: ({ value }: { value: ImageValue }) => {
       return (
-        <img
+        <Image
           src={urlFor(value).url()} // Use urlFor to get the image URL
           alt={value.alt || "Image"} // Fallback alt text if not provided
           className="w-full h-auto my-4 rounded-lg shadow-lg" // Tailwind classes for styling

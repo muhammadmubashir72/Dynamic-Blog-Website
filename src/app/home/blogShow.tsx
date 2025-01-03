@@ -44,7 +44,7 @@ export default async function BlogPage() {
           {blog.map((blog: Blog, index: number) => (
             <BlogComponent
               key={index}
-              imagePath={urlFor(blog.image).url()}
+              imagePath={blog.image}
               category={blog.category}
               heading={blog.heading}
               paragraph={blog.paragrapgh}
