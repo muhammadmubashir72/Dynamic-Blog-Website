@@ -32,7 +32,7 @@ async function fetchData(): Promise<Blog[] | null> {
 
 export default async function BlogPage() {
   const blog = await fetchData();
-
+  console.log(blog);
   // If no blog data, show a loading or error message
   if (!blog) {
     return (
@@ -61,7 +61,7 @@ export default async function BlogPage() {
               category={post.category}
               heading={post.heading}
               paragraph={post.paragrapgh}
-              icon={urlFor(post.icon).url()}
+              icon={post.icon}
               author={post.author}
               date={post.date}
               detailsLink={`/blogs/${post.id}`}

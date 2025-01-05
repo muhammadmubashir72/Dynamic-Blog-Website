@@ -37,14 +37,14 @@ export default async function Home() {
         <h1
           className={`${montserrat.className} text-center text-5xl font-extrabold text-gray-800`}
         >
-          Welcome to Meta Blog
+          Welcome to HMMS Blog
         </h1>
         <p className="text-xl text-gray-600 mt-4 text-center">
           Your go-to source for tech insights, coding tutorials, and more.
         </p>
 
         {/* Image */}
-        <div className="mt-8">
+        <div className="mt-8 animate-pulse">
           <Image
             src="/images/hero-image.png" // Replace with your image path
             alt="Tech Blog"
@@ -64,11 +64,7 @@ export default async function Home() {
           </Link>
         </div>
         <div>
-      
-        <BlogPage/>
-
-
-        
+          <BlogPage />
         </div>
       </div>
     </section>

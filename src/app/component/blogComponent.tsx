@@ -22,7 +22,7 @@ interface Cards {
 
 const BlogComponent = (card: Cards) => {
   return (
-    <div className="w-[392px] h-[520px] space-y-6 my-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
+    <div className="w-[392px] h-[520px] space-y-6 my-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow transform-gpu hover:scale-105 animate-fade-in">
       <Image
         src={urlFor(card.imagePath).url()} // Replace with your image path
         alt="Category"
