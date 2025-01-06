@@ -1,83 +1,87 @@
-import Link from "next/link";
+"use client";
+
+import React from "react";
 import { Montserrat, Roboto } from "next/font/google";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 // Import Google Fonts
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "700"] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });
 
-const Footer = () => {
+const Contact = () => {
   return (
-    <footer className="bg-gray-100 dark:bg-transparent text-gray-800 dark:text-gray-200 py-8 px-6 dark:border-t-[1px] dark:border-gray-900">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Quick Links */}
-        <div>
-          <h3
-            className={`text-2xl font-semibold mb-4 text-[#252B42] ${montserrat.className}`}
-          >
-            Hurry up! Links
-          </h3>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link href="/" className="hover:underline text-[#252B42]">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:underline text-[#252B42]">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="/blogsAll" className="hover:underline text-[#252B42]">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:underline text-[#252B42]">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
+    <div
+      className="relative bg-cover bg-center bg-no-repeat py-20 text-white"
+      style={{
+        position: "relative",
+      }}
+    >
+      {/* Background Image with Reduced Opacity using ::before */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/images/contact.webp')",
+          opacity: 0.5, // Adjust the opacity here to make the background image less prominent
+        }}
+      ></div>
 
-        {/* Branding Section */}
-        <div>
-          <h2
-            className={`text-2xl font-bold text-[#252B42] ${montserrat.className}`}
-          >
-            HMMS Blog
-          </h2>
-          <p
-            className={`mt-4 text-sm text-[#252B42] ${roboto.className}`}
-          >
-            Sharing ideas, insights, and stories to inspire and connect with
-            readers around the world.
-          </p>
-        </div>
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-5xl text-center px-6">
+        <h2
+          className={`text-5xl font-bold mb-4 ${montserrat.className} text-[#252B42]`}
+        >
+          Get in Touch
+        </h2>
+        <p
+          className={`text-lg mb-8 font-bold text-[#252B42] ${roboto.className}`}
+        >
+          We’d love to hear from you. Reach out for inquiries, feedback, or just to say hello!
+        </p>
 
         {/* Contact Info */}
-        <div>
-          <h3
-            className={`text-2xl font-semibold mb-4 text-[#252B42] ${montserrat.className}`}
-          >
-            Contact Us
-          </h3>
-          <ul className="space-y-2 text-sm text-[#252B42]">
-            <li>Email: mubashirkhi72@gmail.com</li>
-            <li>Phone: +92 325 3570 380</li>
-            <li>Location: Karachi, Pakistan</li>
-          </ul>
+        <div className="flex flex-col md:flex-row justify-center gap-8 mb-10">
+          <div className="flex items-center gap-4">
+            <Mail className="w-8 h-8 text-[#252B42]" />
+            <span className={`${roboto.className} text-[#252B42] font-bold text-lg`}>email@example.com</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Phone className="w-8 h-8 text-[#252B42]" />
+            <span className={`${roboto.className} text-[#252B42] font-bold text-lg`}>+1 (123) 456-7890</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <MapPin className="w-8 h-8 text-[#252B42]" />
+            <span className={`${roboto.className} text-[#252B42] font-bold text-lg`}>
+              123 Blog Street, Web City
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* Footer Bottom */}
-      <div
-        className={`mt-8 text-center font-bold border-t border-gray-300 dark:border-gray-700 pt-4 text-sm ${roboto.className}`}
-      >
-        <p>© 2025 Mubashir Saeedi Blog. All rights reserved.</p>
+        {/* Contact Form */}
+        <form className="space-y-6 max-w-2xl mx-auto text-[#252B42]">
+          <input
+            type="text"
+            placeholder="Your Name"
+            className={`w-full px-6 py-3 rounded-md text-[#252B42] placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 ${roboto.className}`}
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            className={`w-full px-6 py-3 rounded-md text-[#252B42] placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 ${roboto.className}`}
+          />
+          <textarea
+            placeholder="Your Message"
+            className={`w-full px-6 py-3 rounded-md text-[#252B42] placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 h-40 resize-none ${roboto.className}`}
+          ></textarea>
+          <button
+            type="submit"
+            className={`w-full py-3 rounded-md bg-yellow-400 text-[#252B42] font-bold hover:bg-yellow-500 transition duration-300 ${montserrat.className}`}
+          >
+            Send Message
+          </button>
+        </form>
       </div>
-    </footer>
+    </div>
   );
 };
 
-export default Footer;
+export default Contact;

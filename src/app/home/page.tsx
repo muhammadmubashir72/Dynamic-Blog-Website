@@ -57,7 +57,7 @@ export default async function Home() {
         {/* Button */}
         <div className="mt-8 text-center">
           <Link
-            href="#latest-posts"
+            href="/blogsAll"
             className="bg-sky-600  text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Explore Latest Posts
