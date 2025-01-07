@@ -1,14 +1,10 @@
 import { client } from "@/sanity/lib/client";
 import { Montserrat } from "next/font/google";
 import BlogComponent from "../component/blogComponent";
-import { urlFor } from "@/sanity/lib/image";
 import { Blog } from "../type/blogType";
 
-// Define Montserrat font
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["700"] });
 
-
-// Fetch data from Sanity
 async function fetchData(): Promise<Blog[] | null> {
   try {
     const query = `*[_type == "blog"]{
@@ -21,7 +17,7 @@ async function fetchData(): Promise<Blog[] | null> {
       author,
       date
     }`;
-    
+
     const data = await client.fetch(query);
     return data || null;
   } catch (error) {
@@ -36,24 +32,30 @@ export default async function BlogPage() {
   // If no blog data, show a loading or error message
   if (!blog) {
     return (
-      <section className="py-16 bg-gray-100">
-        <h1 className={`${montserrat.className} text-center text-3xl font-extrabold text-gray-800`}>
+      <section className="py-16">
+        <h1
+          className={`${montserrat.className}  text-center text-3xl font-extrabold text-gray-800`}
+        >
           Latest Post
         </h1>
         <div className="text-center text-lg text-gray-600">
-          <p>There was an error loading the blog posts. Please try again later.</p>
+          <p>
+            There was an error loading the blog posts. Please try again later.
+          </p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16">
       <div>
-        <h1 className={`${montserrat.className} text-center text-3xl font-extrabold text-gray-800`}>
+        <h1
+          className={`${montserrat.className}  text-center text-3xl font-extrabold text-gray-800 dark:text-white`}
+        >
           Latest Post
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-12 gap-12">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-2">
           {blog.map((post, index) => (
             <BlogComponent
               key={index}

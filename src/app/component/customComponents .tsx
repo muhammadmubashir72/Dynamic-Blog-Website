@@ -15,7 +15,6 @@ type LinkValue = {
 };
 
 export const customComponents = {
-  // Custom rendering for 'image' type in PortableText
   types: {
     image: ({ value }: { value: ImageValue }) => {
       return (
@@ -27,17 +26,22 @@ export const customComponents = {
       );
     },
   },
-  // Custom rendering for 'link' marks in PortableText
   marks: {
-    link: ({ children, value }: { children: React.ReactNode; value: LinkValue }) => {
+    link: ({
+      children,
+      value,
+    }: {
+      children: React.ReactNode;
+      value: LinkValue;
+    }) => {
       return (
         <a
-          href={value.href} // Use the href property from the link mark
+          href={value.href} 
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 hover:underline" // Tailwind classes for styling
+          className="text-blue-600 hover:underline"
         >
-          {children} {/* Render the children inside the link */}
+          {children} 
         </a>
       );
     },

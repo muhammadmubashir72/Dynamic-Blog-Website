@@ -32,14 +32,14 @@ export default async function Home() {
   console.log(blog);
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16">
       <div className="">
         <h1
-          className={`${montserrat.className} text-center text-5xl font-extrabold text-gray-800`}
+          className={`${montserrat.className } hover:text-pink-600  text-center text-2xl lg:text-5xl font-extrabold text-gray-800 dark:text-white`}
         >
           Welcome to HMMS Blog
         </h1>
-        <p className="text-xl text-gray-600 mt-4 text-center">
+        <p className="text-xl hover:text-pink-600  text-gray-600 mt-4 text-center dark:text-white">
           Your go-to source for tech insights, coding tutorials, and more.
         </p>
 
@@ -58,7 +58,7 @@ export default async function Home() {
         <div className="mt-8 text-center">
           <Link
             href="/blogsAll"
-            className="bg-sky-600  text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition duration-300"
+            className="bg-sky-600 hover:text-pink-600  text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Explore Latest Posts
           </Link>

@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Montserrat, Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { MdClose } from "react-icons/md";
 import { CiMenuFries } from "react-icons/ci";
-import { ModeToggle } from "../theme/themeButton";
+import { ModeToggle } from "../theme/theme-button";
 
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["700"] });
-const roboto = Roboto({ subsets: ["latin"], weight: ["700"] });
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,7 +34,7 @@ export default function Navbar() {
   return (
     <div className="w-full">
       {/* Navbar Light */}
-      <div className="w-full px-4 sm:px-8 py-4 bg-white">
+      <div className="w-full px-4 sm:px-8 py-4 ">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex space-x-2">
@@ -45,10 +44,10 @@ export default function Navbar() {
               width={36}
               height={36}
             />
-            <h3 className="text-2xl text-[#252B42] hover:text-pink-600 ">
+            <h3 className="text-2xl text-[#252B42] dark:text-white hover:text-pink-600 ">
               HMMS
               <span
-                className={`${montserrat.className} text-[#252B42] pl-2 text-2xl  hover:text-pink-800`}
+                className={`${montserrat.className} dark:text-white text-[#252B42] pl-2 text-2xl  hover:text-pink-800`}
               >
                 Blog
               </span>
@@ -72,21 +71,23 @@ export default function Navbar() {
               <li key={navbar.link} className="relative">
                 <Link
                   href={navbar.link}
-                  className={`${montserrat.className} font-bold text-md text-[#252B42] hover:text-pink-600`}
+                  className={`${montserrat.className} font-bold text-md  dark:text-white text-[#252B42]  hover:text-pink-600 `}
                 >
                   {navbar.name}
                 </Link>
               </li>
             ))}
-            <ModeToggle/>
+            <ModeToggle />
           </ul>
         </div>
-      </div>
-
+      </div>{" "}
       {/* Links for Small Screens */}
       {menuOpen && (
         <div className="flex flex-col mt-4 md:hidden text-center space-y-2">
-          <ModeToggle/>
+          
+          <div >
+          <ModeToggle />
+          </div>
           {[
             { name: "Home", link: "/" },
             { name: "Blog", link: "/blogsAll" },
@@ -95,7 +96,7 @@ export default function Navbar() {
           ].map((navbar) => (
             <Link href={navbar.link} key={navbar.name} onClick={closeMenu}>
               <span
-                className={`${montserrat.className} font-bold text-sm text-[#252B42] hover:text-pink-900`}
+                className={`${montserrat.className} font-bold text-sm dark:text-white text-[#252B42] hover:text-pink-900`}
               >
                 {navbar.name}
               </span>

@@ -1,5 +1,5 @@
 // Assuming you are using @portabletext/react for rendering PortableText
-import {PortableTextBlock } from '@portabletext/react';
+import { PortableTextBlock } from "@portabletext/react";
 
 export type Blog = {
   id: string;

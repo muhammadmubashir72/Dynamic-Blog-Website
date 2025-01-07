@@ -33,14 +33,14 @@ export default async function BlogPage() {
   console.log(blog);
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16">
       <div>
         <h1
-          className={`${montserrat.className} pl-20 text-2xl font-extrabold text-gray-800 mb-16`}
+          className={`${montserrat.className} text-center lg:text-start pl-0 md:pl-14 lg:pl-14 text-2xl font-extrabold dark:text-white text-gray-800 mb-16 hover:text-pink-600 `}
         >
           Latest Post
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-12 gap-12 hover:shadow-lg transition-shadow transform-gpu hover:scale-105 animate-fade-in">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   mx-12 gap-12 hover:shadow-lg transition-shadow transform-gpu hover:scale-105 animate-fade-in">
           {blog.map((blog: Blog, index: number) => (
             <BlogComponent
               key={index}
@@ -58,8 +58,8 @@ export default async function BlogPage() {
 
         <div className="flex justify-center my-20">
           <Link
-            href="/blogsAll" // Replace with your actual blogs page URL
-            className="px-6 py-3 text-white font-medium text-lg rounded-full bg-gradient-to-r from-[#4B6BFB] via-[#1D9BF0] to-[#FF5733] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4B6BFB]/50 focus:outline-none focus:ring-4 focus:ring-[#4B6BFB]/50"
+            href="/blogsAll" 
+            className="px-6 py-3 text-white font-medium text-lg  hover:text-pink-600  rounded-full bg-gradient-to-r from-[#4B6BFB] via-[#1D9BF0] to-[#FF5733] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#4B6BFB]/50 focus:outline-none focus:ring-4 focus:ring-[#4B6BFB]/50"
           >
             View All Blogs
           </Link>
