@@ -44,17 +44,21 @@ export default function Navbar() {
               width={36}
               height={36}
             />
-            <h3 className="text-2xl text-[#252B42] dark:text-white hover:text-pink-600 ">
-              HMMS
-              <span
-                className={`${montserrat.className} dark:text-white text-[#252B42] pl-2 text-2xl  hover:text-pink-800`}
-              >
-                Blog
-              </span>
-            </h3>
+            <Link href={"/"}>
+              <h3 className="text-2xl text-[#252B42] dark:text-white hover:text-pink-600 ">
+                HMMS
+                <span
+                  className={`${montserrat.className} dark:text-white text-[#252B42] pl-2 text-2xl  hover:text-pink-800`}
+                >
+                  Blog
+                </span>
+              </h3>
+            </Link>
           </div>
           {/* Icons for Small Screens */}
           <div className="flex items-center md:hidden gap-4">
+            <ModeToggle />
+
             <button onClick={toggleMenu} className="focus:outline-none">
               {menuOpen ? <MdClose size={24} /> : <CiMenuFries size={24} />}
             </button>
@@ -80,14 +84,10 @@ export default function Navbar() {
             <ModeToggle />
           </ul>
         </div>
-      </div>{" "}
+      </div>
       {/* Links for Small Screens */}
       {menuOpen && (
         <div className="flex flex-col mt-4 md:hidden text-center space-y-2">
-          
-          <div >
-          <ModeToggle />
-          </div>
           {[
             { name: "Home", link: "/" },
             { name: "Blog", link: "/blogsAll" },
